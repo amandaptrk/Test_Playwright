@@ -7,16 +7,16 @@ test.describe.parallel('Checkout Process', () => {
     test('POST Request - Create a new user', async ({ request }) => {
         const response = await request.post(`${baseUrl}/v2/users/?${token}`, {
             data: {
-                name: 'Nana Komatsu',
-                email: 'komatsu_nana@blast.ex',
+                name: 'Nana Osaki',
+                email: 'osaki_nana@blast.ex',
                 gender: 'female',
                 status: 'active'
             }
         })
         const responseBody = JSON.parse(await response.text())
         expect(response.status()).toBe(201)
-        expect(responseBody.name).toBe('Nana Komatsu')
-        expect(responseBody.email).toBe('komatsu_nana@blast.ex')
+        expect(responseBody.name).toBe('Nana Osaki')
+        expect(responseBody.email).toBe('osaki_nana@blast.ex')
         expect(responseBody.gender).toBe('female')
         expect(responseBody.status).toBe('active')
     })
@@ -33,14 +33,14 @@ test.describe.parallel('Checkout Process', () => {
     test('PUT Request - Update user details', async ({ request }) => {
         const response = await request.put(`${baseUrl}/v2/users/6900806?${token}`, {
             data: {
-                name: 'Nana Ichinose',
+                name: 'Nana Honjo',
                 status: 'inactive'
             }
         })
         const responseBody = JSON.parse(await response.text())
         expect(response.status()).toBe(200)
-        expect(responseBody.name).toBe('Nana Ichinose')
-        expect(responseBody.email).toBe('komatsu_nana@blast.ex')
+        expect(responseBody.name).toBe('Nana Honjo')
+        expect(responseBody.email).toBe('honjo_nana@blast.ex')
         expect(responseBody.gender).toBe('female')
         expect(responseBody.status).toBe('inactive')
     });
