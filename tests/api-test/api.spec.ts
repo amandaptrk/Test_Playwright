@@ -7,44 +7,44 @@ test.describe.parallel('Checkout Process', () => {
     test('POST Request - Create a new user', async ({ request }) => {
         const response = await request.post(`${baseUrl}/v2/users/?${token}`, {
             data: {
-                name: 'amandabbbb',
-                email: 'amanda1234@email01.ex',
-                gender: 'female',
+                name: 'Gojo Satoru',
+                email: 'gojo_satoru@jjk.ex',
+                gender: 'male',
                 status: 'active'
             }
         })
         const responseBody = JSON.parse(await response.text())
         console.log(responseBody)
         expect(response.status()).toBe(201)
-        expect(responseBody.name).toBe('amandabbbb')
+        expect(responseBody.name).toBe('Gojo Satoru')
         expect(responseBody.email).toBeTruthy()
-        expect(responseBody.gender).toBe('female')
+        expect(responseBody.gender).toBe('male')
         expect(responseBody.status).toBe('active')
     })
 
     test('GET Request - Get user details', async ({ request }) => {
-        const response = await request.get(`${baseUrl}/v2/users/?${token}`)
+        const response = await request.get(`${baseUrl}/v2/users/6901338?${token}`)
         const responseBody = JSON.parse(await response.text()) 
         console.log(responseBody)       
         expect(response.status()).toBe(200)
-        // expect(responseBody.name).toBe('Yamazaki Kento')
-        // expect(responseBody.email).toBe('yamaken@aliceinborderland.ex')
-        // expect(responseBody.gender).toBe('male')
-        // expect(responseBody.status).toBe('active')
+        expect(responseBody.name).toBe('Gojo Satoru')
+        expect(responseBody.email).toBeTruthy()
+        expect(responseBody.gender).toBe('male')
+        expect(responseBody.status).toBe('active')
     })
 
     test('PUT Request - Update user details', async ({ request }) => {
-        const response = await request.put(`${baseUrl}/v2/users/6901316?${token}`, {
+        const response = await request.put(`${baseUrl}/v2/users/6901338?${token}`, {
             data: {
-                name: 'Mochi',
+                name: 'Satoru Gojo',
                 status: 'inactive'
             }
         })
         const responseBody = JSON.parse(await response.text())
         expect(response.status()).toBe(200)
-        expect(responseBody.name).toBe('Mochi')
+        expect(responseBody.name).toBe('Satoru Gojo')
         expect(responseBody.email).toBeTruthy()
-        expect(responseBody.gender).toBe('female')
+        expect(responseBody.gender).toBe('male')
         expect(responseBody.status).toBe('inactive')
     });
 });
