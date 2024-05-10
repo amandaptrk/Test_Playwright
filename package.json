@@ -2,7 +2,9 @@
   "name": "test_playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "tests:api": "playwright test --config=api.config.ts --project=Chromium"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
