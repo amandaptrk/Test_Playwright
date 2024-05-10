@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { loginPage } from '../tests/login.ts';
+import { loginPage } from '../ui-automation-test/login.ts';
 import { inventoryPage } from './sort.ts';
 
 test.beforeEach(async ({ page }) => {

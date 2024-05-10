@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
-import { loginPage } from '../tests/login.ts';
-import { checkoutProcess } from '../tests/checkout.ts';
+import { loginPage } from '../ui-automation-test/login.ts';
+import { checkoutProcess } from '../ui-automation-test/checkout.ts';
 
 test.beforeEach(async ({ page }) => {
     const login = new loginPage(page);
