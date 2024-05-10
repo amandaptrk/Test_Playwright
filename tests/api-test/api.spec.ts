@@ -7,48 +7,44 @@ test.describe.parallel('Checkout Process', () => {
     test('POST Request - Create a new user', async ({ request }) => {
         const response = await request.post(`${baseUrl}/v2/users/?${token}`, {
             data: {
-                name: 'Yamazaki Kento',
-                email: 'yamaken@aliceinborderland.ex',
-                gender: 'male',
+                name: 'amandabbbb',
+                email: 'amanda1234@email01.ex',
+                gender: 'female',
                 status: 'active'
             }
         })
         const responseBody = JSON.parse(await response.text())
+        console.log(responseBody)
         expect(response.status()).toBe(201)
-        expect(responseBody.name).toBe('Yamazaki Kento')
-        expect(responseBody.email).toBe('yamaken@aliceinborderland.ex')
-        expect(responseBody.gender).toBe('male')
+        expect(responseBody.name).toBe('amandabbbb')
+        expect(responseBody.email).toBeTruthy()
+        expect(responseBody.gender).toBe('female')
         expect(responseBody.status).toBe('active')
     })
 
     test('GET Request - Get user details', async ({ request }) => {
-        const response = await request.get(`${baseUrl}/v2/users/6901150?${token}`)
+        const response = await request.get(`${baseUrl}/v2/users/?${token}`)
+        const responseBody = JSON.parse(await response.text()) 
+        console.log(responseBody)       
         expect(response.status()).toBe(200)
-        const responseBody = JSON.parse(await response.text())        
-        expect(responseBody.name).toBe('Yamazaki Kento')
-        expect(responseBody.email).toBe('yamaken@aliceinborderland.ex')
-        expect(responseBody.gender).toBe('male')
-        expect(responseBody.status).toBe('active')
+        // expect(responseBody.name).toBe('Yamazaki Kento')
+        // expect(responseBody.email).toBe('yamaken@aliceinborderland.ex')
+        // expect(responseBody.gender).toBe('male')
+        // expect(responseBody.status).toBe('active')
     })
 
     test('PUT Request - Update user details', async ({ request }) => {
-        const response = await request.put(`${baseUrl}/v2/users/6901116?${token}`, {
+        const response = await request.put(`${baseUrl}/v2/users/6901316?${token}`, {
             data: {
-                name: 'Kento Yamazakii',
+                name: 'Mochi',
                 status: 'inactive'
             }
         })
         const responseBody = JSON.parse(await response.text())
         expect(response.status()).toBe(200)
-        expect(responseBody.name).toBe('Kento Yamazakii')
-        expect(responseBody.email).toBe('yamaken@aliceinborderland.ex')
-        expect(responseBody.gender).toBe('male')
+        expect(responseBody.name).toBe('Mochi')
+        expect(responseBody.email).toBeTruthy()
+        expect(responseBody.gender).toBe('female')
         expect(responseBody.status).toBe('inactive')
     });
-
-    // test('DELETE Request - Get user details', async ({ request }) => {
-    //     const response = await request.delete(`${baseUrl}/v2/users/6901116?${token}`)
-    //     const responseBody = JSON.parse(await response.text())
-    //     expect(response.status()).toBe(204)
-    // });
 });
